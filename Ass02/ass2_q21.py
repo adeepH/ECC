@@ -78,8 +78,8 @@ for row in rows:
 unwanted_defender_df.show()
 """
 
-window_spec = Window.partitionBy(col("player_name"), col("CLOSEST_DEFENDER")).orderBy("TOTAL_SHOT_COUNT")
-
+#window_spec = Window.partitionBy(col("player_name"), col("CLOSEST_DEFENDER")).orderBy("TOTAL_SHOT_COUNT")
+window_spec = Window.partitionBy(col("player_name")).orderBy("TOTAL_SHOT_COUNT")
 # Add a row number column to the DataFrame based on the window specification
 df = sorted_df.withColumn("row_number", row_number().over(window_spec))
 
