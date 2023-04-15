@@ -18,12 +18,18 @@ from pyspark.sql.functions import avg, to_date, split, col, lit, desc, count, ex
 from pyspark.sql.types import ArrayType, DoubleType
 from pyspark.ml.evaluation import ClusteringEvaluator
 
-df = spark.read.csv("NYC.csv", header=True, inferSchema=True)
-#df = df.dropna()
-df = df.filter(col("Vehicle Year") >= 1900)
-df = df.filter(col("Street Code1") > 0)
-df = df.filter(col("Street Code2") > 0)
-df = df.filter(col("Street Code3") > 0)
+df = spark.read.csv("NYC.csv", header=True, inferSchema=True) 
+# Dropping vehicles with vehicle year < 1900 (There are several 0 values, who knows how many more) 
+threshold = 1900
+# dropping all records that have a street codeX of 0
+zip_code_threshold = 10^4
+# As zipcode has to be six digits, we divide it by 10^6 and check if 
+df = df.filter((col("Vehicle Year") >= threshold) & 
+               (col("Street Code1")/zip_code_threshold!=0) & 
+               (col("Street Code2")/zip_code_threshold!=0) & 
+               (col("Street Code3")/zip_code_threshold != 0))
+#df = df.drop('Date')
+
 
 # Filter the DataFrame to include only parking tickets for Black vehicles and illegal parking violations
 #illegal_parking_codes = [20, 21, 23, 24, 27] # These are the violation codes for illegal parking 
@@ -48,7 +54,7 @@ subset_df = scaler_model.transform(subset_df)
 # Apply K-means clustering to the data
 # calculating the optimal cluster count using silhouette scores
 
-K_max = 4
+K_max = 10
 K_min = 2
 silhouette_scores = [] 
 

@@ -37,11 +37,15 @@ df = df[['Issue Date', 'Violation County', 'Vehicle Make', 'Vehicle Color',
          'Vehicle Body Type', 'Vehicle Year', 'Violation Time', 'Street Name','Violation Precinct']]
 df = df.dropna()
 
-# Dropping vehicles with vehicle year < 1900 (There are several 0 values, who knows how many more)
+# Dropping vehicles with vehicle year < 1900 (There are several 0 values, who knows how many more) 
 threshold = 1900
 # dropping all records that have a street codeX of 0
-df = df.filter((col("Vehicle Year") >= threshold) & (col("Street Code1") > 0) & (col("Street Code2") > 0) & (col("Street Code3") > 0))
- 
+zip_code_threshold = 10^4
+# As zipcode has to be six digits, we divide it by 10^6 and check if 
+df = df.filter((col("Vehicle Year") >= threshold) &
+                (col("Street Code1")//zip_code_threshold!=0) &
+                  (col("Street Code2")//zip_code_threshold!=0) &
+                    (col("Street Code3")//zip_code_threshold != 0))
 #df = df.drop('Date')
 
 # 1. When are tickets most likely to be issued?
