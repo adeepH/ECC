@@ -100,9 +100,12 @@ def app():
                 if set(fnames).issubset(set(df.columns)):
                     #st.write('Done preliminary Checks')
                     # Train a Random Forest Classifier on the dataframe
-                    #df = preprocess(df) # Do some preprocessing
+                    
+                    df = preprocess(df) # Do some preprocessing
+
                     #st.write('Preprocessed the data')
-                    #x_train,x_test,y_train,y_test = train_test(df=df)
+                    x_train,x_test,y_train,y_test = train_test(df=df)
+                    st.stop()
                     #st.write('Split the data') 
                     
 
