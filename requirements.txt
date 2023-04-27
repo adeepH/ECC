@@ -7,3 +7,4 @@ seaborn
 xgboost
 scikit-learn
 boto3
+plotly
