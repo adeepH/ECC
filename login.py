@@ -116,6 +116,7 @@ if __name__ == "__main__":
     st.session_state['username'] = username
     st.session_state['password'] = password 
     st.session_state['user_dict'] = users
+     
     # If authentication is successful, redirect to the home page
     if st.session_state.username in users and st.session_state.password in users[st.session_state.username]:
          
@@ -125,6 +126,8 @@ if __name__ == "__main__":
         st.write('Head over to the infer page to get fraudulent activity detection')
             #st.experimental_rerun()
             #st.stop()
+    elif st.session_state.username == "" or st.session_state.password == "":
+        st.stop()
     else:
-        st.error('Invalid Username or Password')
+        st.warning('please login to continue')
 
