@@ -96,9 +96,9 @@ def login():
     return username, password, submit_button
 # Define user credentials
 users = {
-    'john': 'password1',
-    'jane': 'password2',
-    'bob': 'password3'
+    'Adeep': 'AdeepH',
+    'Dene': 'DeneA',
+    'Kumar': 'KumarV'
 }
 
 # Check if the provided username and password match a valid user
