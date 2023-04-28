@@ -120,7 +120,7 @@ def app():
                     #st.write(score)
                     x_test['isFraud'] = pred
                     #st.write(x_test['isFraud'].value_counts())
-                    x_test['isFraud'] = x_test['isFraud'].apply({1:'Fraud', 0:'Fair'}.get)
+                    x_test['isFraud'] = x_test['isFraud'].apply({0:'Fraud', 1:'Fair'}.get)
                     visualize(x_test)
                     st.write('Showing a sample of the predictions')
                     st.dataframe(x_test.head(20))
