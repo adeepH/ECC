@@ -1,8 +1,0 @@
-23/04/14 20:38:42 WARN Utils: Your hostname, Adeeps-MacBook-Air.local resolves to a loopback address: 127.0.0.1; using 10.0.0.154 instead (on interface en0)
-23/04/14 20:38:42 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
-Based on Silhoutte Score Evaluation, the most optimal cluster count is 
- 3
-The probability of the ticketed black car in the cluster is:
-
-3676545
-0.01257049757312912
